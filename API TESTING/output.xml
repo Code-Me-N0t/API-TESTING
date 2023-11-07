@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<robot generator="Robot 6.1.1 (Python 3.12.0 on win32)" generated="20231107 15:35:28.166" rpa="false" schemaversion="4">
+<suite id="s1" name="Test" source="c:\Users\ITA-40138\Documents\AUTOMATION\API TESTING\testsuites\test.robot">
+<test id="s1-t1" name="Test POST" line="20">
+<kw name="keywordssss">
+<var>${kahitanongname}</var>
+<kw name="GET" library="RequestsLibrary">
+<var>${response}</var>
+<arg>${link}</arg>
+<doc>Sends a GET request.</doc>
+<msg timestamp="20231107 15:35:28.950" level="INFO">GET Request : url=https://reqres.in/api/users?page=2 
+ path_url=/api/users?page=2 
+ headers={'User-Agent': 'python-requests/2.31.0', 'Accept-Encoding': 'gzip, deflate', 'Accept': '*/*', 'Connection': 'keep-alive'} 
+ body=None 
+ </msg>
+<msg timestamp="20231107 15:35:28.955" level="INFO">GET Response : url=https://reqres.in/api/users?page=2 
+ status=200, reason=OK 
+ headers={'Date': 'Tue, 07 Nov 2023 07:36:58 GMT', 'Content-Type': 'application/json; charset=utf-8', 'Transfer-Encoding': 'chunked', 'Connection': 'keep-alive', 'Report-To': '{"group":"heroku-nel","max_age":3600,"endpoints":[{"url":"https://nel.heroku.com/reports?ts=1699057879&amp;sid=c4c9725f-1ab0-44d8-820f-430df2718e11&amp;s=y%2FIOU187%2Ftkw3z6xxlnt4imokXFcIySPfIGiRJ4qsUg%3D"}]}', 'Reporting-Endpoints': 'heroku-nel=https://nel.heroku.com/reports?ts=1699057879&amp;sid=c4c9725f-1ab0-44d8-820f-430df2718e11&amp;s=y%2FIOU187%2Ftkw3z6xxlnt4imokXFcIySPfIGiRJ4qsUg%3D', 'Nel': '{"report_to":"heroku-nel","max_age":3600,"success_fraction":0.005,"failure_fraction":0.05,"response_headers":["Via"]}', 'X-Powered-By': 'Express', 'Access-Control-Allow-Origin': '*', 'Etag': 'W/"406-ut0vzoCuidvyMf8arZpMpJ6ZRDw"', 'Via': '1.1 vegur', 'Cache-Control': 'max-age=14400', 'CF-Cache-Status': 'HIT', 'Age': '2934', 'Vary': 'Accept-Encoding', 'Server': 'cloudflare', 'CF-RAY': '8223e884ef6ebc40-MNL', 'Content-Encoding': 'gzip'} 
+ body={"page":2,"per_page":6,"total":12,"total_pages":2,"data":[{"id":7,"email":"michael.lawson@reqres.in","first_name":"Michael","last_name":"Lawson","avatar":"https://reqres.in/img/faces/7-image.jpg"},{"id":8,"email":"lindsay.ferguson@reqres.in","first_name":"Lindsay","last_name":"Ferguson","avatar":"https://reqres.in/img/faces/8-image.jpg"},{"id":9,"email":"tobias.funke@reqres.in","first_name":"Tobias","last_name":"Funke","avatar":"https://reqres.in/img/faces/9-image.jpg"},{"id":10,"email":"byron.fields@reqres.in","first_name":"Byron","last_name":"Fields","avatar":"https://reqres.in/img/faces/10-image.jpg"},{"id":11,"email":"george.edwards@reqres.in","first_name":"George","last_name":"Edwards","avatar":"https://reqres.in/img/faces/11-image.jpg"},{"id":12,"email":"rachel.howell@reqres.in","first_name":"Rachel","last_name":"Howell","avatar":"https://reqres.in/img/faces/12-image.jpg"}],"support":{"url":"https://reqres.in/#support-heading","text":"To keep ReqRes free, contributions towards server costs are appreciated!"}} 
+ </msg>
+<msg timestamp="20231107 15:35:28.955" level="INFO">${response} = &lt;Response [200]&gt;</msg>
+<status status="PASS" starttime="20231107 15:35:28.395" endtime="20231107 15:35:28.956"/>
+</kw>
+<kw name="Set Variable" library="BuiltIn">
+<var>${kahitano}</var>
+<arg>${response.json()["data"][0]["first_name"]}</arg>
+<doc>Returns the given values which can then be assigned to a variables.</doc>
+<msg timestamp="20231107 15:35:28.958" level="INFO">${kahitano} = Michael</msg>
+<status status="PASS" starttime="20231107 15:35:28.956" endtime="20231107 15:35:28.958"/>
+</kw>
+<kw name="Log To Console" library="BuiltIn">
+<arg>${response.json()}</arg>
+<doc>Logs the given message to the console.</doc>
+<status status="PASS" starttime="20231107 15:35:28.958" endtime="20231107 15:35:28.960"/>
+</kw>
+<msg timestamp="20231107 15:35:28.960" level="INFO">${kahitanongname} = Michael</msg>
+<status status="PASS" starttime="20231107 15:35:28.394" endtime="20231107 15:35:28.960"/>
+</kw>
+<kw name="Create Dictionary" library="BuiltIn">
+<var>${kahitano}</var>
+<arg>name=${kahitanongname}</arg>
+<arg>job=QA</arg>
+<doc>Creates and returns a dictionary based on the given ``items``.</doc>
+<msg timestamp="20231107 15:35:28.962" level="INFO">${kahitano} = {'name': 'Michael', 'job': 'QA'}</msg>
+<status status="PASS" starttime="20231107 15:35:28.961" endtime="20231107 15:35:28.962"/>
+</kw>
+<kw name="POST" library="RequestsLibrary">
+<var>${response}</var>
+<arg>https://reqres.in/api/users</arg>
+<arg>data=${kahitano}</arg>
+<doc>Sends a POST request.</doc>
+<msg timestamp="20231107 15:35:29.941" level="INFO">POST Request : url=https://reqres.in/api/users 
+ path_url=/api/users 
+ headers={'User-Agent': 'python-requests/2.31.0', 'Accept-Encoding': 'gzip, deflate', 'Accept': '*/*', 'Connection': 'keep-alive', 'Content-Length': '19', 'Content-Type': 'application/x-www-form-urlencoded'} 
+ body=name=Michael&amp;job=QA 
+ </msg>
+<msg timestamp="20231107 15:35:29.942" level="INFO">POST Response : url=https://reqres.in/api/users 
+ status=201, reason=Created 
+ headers={'Date': 'Tue, 07 Nov 2023 07:36:59 GMT', 'Content-Type': 'application/json; charset=utf-8', 'Content-Length': '79', 'Connection': 'keep-alive', 'Report-To': '{"group":"heroku-nel","max_age":3600,"endpoints":[{"url":"https://nel.heroku.com/reports?ts=1699342619&amp;sid=c4c9725f-1ab0-44d8-820f-430df2718e11&amp;s=f4Qu3ynprcwUh0rzS1FWqDdd1GyzC7Rojxpm68qE%2Ft8%3D"}]}', 'Reporting-Endpoints': 'heroku-nel=https://nel.heroku.com/reports?ts=1699342619&amp;sid=c4c9725f-1ab0-44d8-820f-430df2718e11&amp;s=f4Qu3ynprcwUh0rzS1FWqDdd1GyzC7Rojxpm68qE%2Ft8%3D', 'Nel': '{"report_to":"heroku-nel","max_age":3600,"success_fraction":0.005,"failure_fraction":0.05,"response_headers":["Via"]}', 'X-Powered-By': 'Express', 'Access-Control-Allow-Origin': '*', 'Etag': 'W/"4f-00PfGunth6AoY+3yNoLzQsUSyaA"', 'Via': '1.1 vegur', 'CF-Cache-Status': 'DYNAMIC', 'Server': 'cloudflare', 'CF-RAY': '8223e8889f8abc39-MNL'} 
+ body={"name":"Michael","job":"QA","id":"414","createdAt":"2023-11-07T07:36:59.294Z"} 
+ </msg>
+<msg timestamp="20231107 15:35:29.942" level="INFO">${response} = &lt;Response [201]&gt;</msg>
+<status status="PASS" starttime="20231107 15:35:28.962" endtime="20231107 15:35:29.942"/>
+</kw>
+<kw name="Log To Console" library="BuiltIn">
+<arg>${response.json()}</arg>
+<doc>Logs the given message to the console.</doc>
+<status status="PASS" starttime="20231107 15:35:29.945" endtime="20231107 15:35:29.947"/>
+</kw>
+<status status="PASS" starttime="20231107 15:35:28.394" endtime="20231107 15:35:29.950"/>
+</test>
+<status status="PASS" starttime="20231107 15:35:28.189" endtime="20231107 15:35:29.953"/>
+</suite>
+<statistics>
+<total>
+<stat pass="1" fail="0" skip="0">All Tests</stat>
+</total>
+<tag>
+</tag>
+<suite>
+<stat pass="1" fail="0" skip="0" id="s1" name="Test">Test</stat>
+</suite>
+</statistics>
+<errors>
+</errors>
+</robot>
